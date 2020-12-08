@@ -1,10 +1,94 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-// var board = 
+//let sizeOfBoard = 9;
+//let numRow = sizeOfBoard.sqrt();
+//let numCol = sizeOfBoard.sqrt();
+
+
+var board = { 
+  cells = [
+    {
+      row: 0,
+      col: 0,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 0,
+      col: 1,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 0,
+      col: 2,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 1,
+      col: 0,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 1,
+      col: 1,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 1,
+      col: 2,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 2,
+      col: 0,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 2,
+      col: 1,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    },
+    {
+      row: 2,
+      col: 2,
+      isMine: true,
+      isMarked: true,
+      hidden: true,
+      surroundingMines: 0
+    }
+  ]
+}
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
+  for(let i = 0; i < board.cells.length; i++) {
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i]);
+  }
+
   lib.initBoard()
 }
 
@@ -28,4 +112,15 @@ function checkForWin () {
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
 function countSurroundingMines (cell) {
+  var surrounding = lib.getSurroundingCells(cell.row, cell.col);
+
+  let count = 0;
+
+  surrounding.forEach((element) => {
+    if(element.isMine === true) {
+      count++;
+    }
+  })
+
+  return count;
 }
