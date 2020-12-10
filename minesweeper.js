@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-
+/*
 var board = { 
   cells: [
     {
       row: 0,
       col: 0,
       isMine: false,
-      isMarked: false,
+      isMarked: true,
       hidden: true,
       surroundingMines: 0
     },
@@ -16,7 +16,7 @@ var board = {
       row: 0,
       col: 1,
       isMine: true,
-      isMarked: false,
+      isMarked: true,
       hidden: true,
       surroundingMines: 0
     },
@@ -78,6 +78,39 @@ var board = {
     }
   ]
 }
+*/
+
+var board = generateBoard();
+
+function generateBoard() {
+  var boardSize = 36;
+  
+  var length = Math.sqrt(boardSize);
+
+  var board = {
+    cells: [],
+  }
+
+  for (let row = 0; row < length; row++) {
+    for (let col = 0; col < length; col++) {
+      var cell = {
+        row: row,
+        col: col,
+        isMine: false,
+        isMarked: true,
+        hidden: true,
+        surroundingMines: 0
+      }  
+      board.cells.push(cell);
+    }
+  }
+  return board;
+}
+
+function isMine () {
+
+}
+
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
